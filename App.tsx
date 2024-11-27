@@ -1,12 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Alert, Pressable, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Alert, Pressable, TextInput, ScrollView, TouchableOpacity, Platform } from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { comunidadApi, conectarApi, editorApi } from "./services/user";
 //import React from 'react';
 import React, { useState } from 'react';
 
 export default function App() {
-  const [str, setStr] = useState("prueba");
+  const [str, setStr] = useState("");
   const comunidad = async () => {
     try {
       const a = await comunidadApi();
@@ -87,32 +87,33 @@ export default function App() {
   };
 
   return (    
-    <SafeAreaProvider>
-    <SafeAreaView style={styles.container}>      
-      <Pressable style={styles.button} onPress={comunidad}>
-      <Text style={styles.buttonText}>Comunidad API</Text>
-      </Pressable>
-      <Pressable style={styles.button} onPress={editor}>
-      <Text style={styles.buttonText}>Editor API</Text>
-      </Pressable>
-      <Pressable  style={styles.button} onPress={vrm}>
-      <Text style={styles.buttonText}>Conectar API</Text>
-      </Pressable>
-    </SafeAreaView>    
-    {/* <View style={styles.area}>
-      <Text style={styles.textArea}>{str}</Text>
-    </View>  */}
-    <View style={styles.area}>
-      <ScrollView style={styles.scrollArea}>
+    <SafeAreaProvider style={styles.contenedor}>
+        <StatusBar style={Platform.OS=='android' ? "light": "dark"}/>
+        <SafeAreaView style={styles.container}>      
+        <TouchableOpacity style={styles.button} onPress={comunidad}>
+        <Text style={styles.buttonText}>Comunidad API</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={editor}>
+        <Text style={styles.buttonText}>Editor API</Text>
+        </TouchableOpacity>
+        <TouchableOpacity  style={styles.button} onPress={vrm}>
+        <Text style={styles.buttonText}>VRM API</Text>
+        </TouchableOpacity>
+      </SafeAreaView>    
+      {/* <View style={styles.area}>
         <Text style={styles.textArea}>{str}</Text>
-      </ScrollView>
-    </View>
-    <View style={styles.areaButton}>
-      <Pressable style={styles.clearButton} onPress={clearText}>
-        <Text style={styles.buttonText}>Borrar Texto</Text>
-      </Pressable>
-    </View>          
-  </SafeAreaProvider>
+      </View>  */}
+      <View style={styles.area}>
+        <ScrollView style={styles.scrollArea}>
+          <Text style={styles.textArea}>{str}</Text>
+        </ScrollView>
+      </View>
+      <View style={styles.areaButton}>
+        <TouchableOpacity style={styles.clearButton} onPress={clearText}>
+          <Text style={styles.buttonText}>Borrar Texto</Text>
+        </TouchableOpacity>
+      </View>          
+    </SafeAreaProvider>
   );
 }
 
@@ -168,4 +169,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     borderRadius: 5,
   },
+  contenedor: {
+    backgroundColor: 'black',
+  }
 });

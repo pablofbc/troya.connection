@@ -11,6 +11,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "androidStatusBar": {
+      "backgroundColor": "#00000001",
+      "barStyle": "dark-content"
+    },
     "ios": {
       "supportsTablet": true
     },
@@ -18,10 +22,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.pablofbc80.troyaconnection"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b25c0c0e-add0-4978-9b07-7092aa5eec4f"
+      }
     }
   }
 }
